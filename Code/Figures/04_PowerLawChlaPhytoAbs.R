@@ -24,18 +24,20 @@ in.col = alpha(cubicl(4),0.8)
 in.col.plot = ifelse(plot.dat$regime=="Basin" ,in.col[2],
                 ifelse(plot.dat$regime=="Shelf" ,in.col[3],
                        ifelse(plot.dat$regime=="HighPhaeo" ,in.col[1],in.col[4])))
-png("./Figures/04_PowerLawChlaPhytoAbs.png",width=4.5,height=3, units = "in",res=300,pointsize = 10 )
+png("./Figures/04_PowerLawChlaPhytoAbs.png",width=6.5,height=4.5, units = "in",res=300,pointsize = 10 )
 par(mar=c(3,3.5,1,1),mgp=c(2,1,0),family="serif")
 plot(x = plot.dat$chla, y = plot.dat$wv443 ,
      pch = 21,bg=in.col.plot, col="grey30",log = "xy",
      ylab=expression("a"['PHY']* " (443) (m"^-1*")"),
      xlab = expression("chl-a (mg m"^-3*")"))
-legend("topleft", legend=c( "LBC" , "MPB","HPB" ,"DDS"), col = "grey30",ncol=2,
+legend("topleft", legend=c( "LCB" , "MPB","HPB" ,"DDS"), col = "grey30",ncol=2,
        pt.bg=in.col[c(2,4,1,3)],pch=21)
 abline(b =0.616, a = log10(0.03801894), untf=F,col="grey65",lty=4,lwd=2)#Devred lab sea
 abline(b = 0.733, a = log10(0.0315), untf=F,col="grey55",lty=3,lwd=2)#Matsuoka et al. (2014) Fig 2
 abline(b = 0.728, a = log10(0.0654), untf=F,col="grey25",lty=6,lwd=2)#Bricaud 2004
-legend("bottomright", legend=c("Devred et al (2022)", "Matsuoka et at (2014)", "Bricaud et al (2004)"),
+legend("bottomright", legend=c(expression("a"['PHY']* " (443) = 0.038 x chl-a "^-0.616*" (Devred et al., 2022)"),
+                               expression("a"['PHY']* " (443) = 0.032 x chl-a "^-0.733*" (Matsuoka et at., 2014)"), 
+                               expression("a"['PHY']* " (443) = 0.065 x chl-a "^-0.728*" (Bricaud et al., 2004)")),
        col = c("grey65", "grey55", "grey25"),lty=c(4,3,6),lwd=2)
 #Basin slope
 slog = rgrlog10(x = plot.dat$chla[plot.dat$regime=="Basin"] , 

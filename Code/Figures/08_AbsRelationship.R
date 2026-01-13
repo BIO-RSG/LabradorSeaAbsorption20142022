@@ -1,7 +1,7 @@
+rm(list=ls())
 library(pals)
 library(scales)
 library(oceancolouR)
-library(Ternary)
 options(scipen=5)
 hplc = read.csv("./Data/PhytoplanktonGrouping.csv")
 phyto = read.csv("./Data/Absorption_Phytoplankton.csv")
@@ -16,12 +16,10 @@ phyto = read.csv("./Data/Absorption_CDOM.csv")
 phyto = phyto[,c("SAMPLE_ID", "wv443nm")]
 names(phyto) = c("SAMPLE_ID", "cdom")
 hplc = merge(y=phyto , x = hplc, by.y="SAMPLE_ID", by.x="SAMPLE_ID",all.x=T)
-rm(phyto)
-
 plot.dat = hplc
-
-png("./Figures/07_AbsRelationship.png",width=6.5,height=2.75, units = "in",res=300,pointsize = 10 )
-par(mfrow=c(1,2),mar=c(3,2.5,1,1),mgp=c(2,1,0),oma=c(0,0.5,0,0),xpd=NA)
+rm(phyto,hplc)
+png("./Figures/08_AbsRelationship.png",width=6.5,height=2.75, units = "in",res=300,pointsize = 10 )
+par(mfrow=c(1,2),mar=c(3,3,1,1),mgp=c(2,1,0),oma=c(0,0.5,0,0),xpd=NA)
 in.col = alpha(cubicl(4),0.8)
 in.col.plot = ifelse(plot.dat$regime=="Basin" ,in.col[2],
                      ifelse(plot.dat$regime=="Shelf" ,in.col[3],
@@ -78,3 +76,4 @@ tab = tab[,c(2,3,4,1,6,7,8,5)]
 tab = rbind(c(rep("NAP",4),rep("CDOM",4)),tab)
 colnames(tab)=c("DDS","HPB","MPB","LCB", "DDS","HPB","MPB","LCB")
 write.csv(tab, "Tables/Table6.csv",row.names = T)
+rm(tab,cd.all,pd.all)

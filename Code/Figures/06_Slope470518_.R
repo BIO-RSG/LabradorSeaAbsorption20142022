@@ -5,6 +5,7 @@ options(scipen=5)
 hplc = read.csv("./Data/PhytoplanktonGrouping.csv")
 phyto = read.csv("./Data/Absorption_Phytoplankton.csv")
 plot.dat = merge(y=phyto , x = hplc, by.y="SAMPLE_ID", by.x="SAMPLE_ID")
+rm(hplc,phyto)
 ##
 in.col = alpha(cubicl(4),0.8)
 in.col.plot = ifelse(plot.dat$regime=="Basin" ,in.col[2],
@@ -13,19 +14,19 @@ in.col.plot = ifelse(plot.dat$regime=="Basin" ,in.col[2],
 in.col.lty = ifelse(plot.dat$regime=="Basin" ,in.col[2],
                     ifelse(plot.dat$regime=="Shelf" ,in.col[3],
                            ifelse(plot.dat$regime=="HighPhaeo" ,in.col[1],in.col[4])))
-
-
-png("./Figures/05_PhytoSlope470518.png",
+png("./Figures/06_PhytoSlope470518.png",
     width=6.5,height=4, units = "in",res=300,pointsize = 10 )
 par(mar=c(1,3,1,0.75),mgp=c(2.25,1,0),mfrow=c(1,3),oma=c(2.2,0.5,0,0.75),xpd=NA)
-##
+##Panel a
 wavelength = "wv443nm"
 plot.dat.norm = plot.dat[,paste0("wv", 400:700,"nm")]/plot.dat[,wavelength]
 sl = (plot.dat.norm$wv518nm - plot.dat.norm$wv471nm)/(518-471)
-boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab=expression("Normalized a"['PHY']*" (443)" ),
+boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab="Regime",
         ylim=c(-0.0145,-0.007),
         xlab =expression("S"['PHY']* " (470-518) (nm"^-1*")"),horizontal=T,names=rev(c("DDS","MPB","HPB","LCB")))
 legend("bottomleft","(a)",bty="n")
+rm(wavelength,plot.dat.norm)
+#Panel b
 a = plot.dat$phaeo*plot.dat$chla
 pch.in = ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.25,0.75,
                 ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] > 0.25 & plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.5,1,
@@ -46,6 +47,8 @@ summary(a)
 abline(a,xpd=F,col = in.col[1],lty=2,lwd=2)
 text(y=12,x = -0.01,expression("R"^2*" = 0.75"), col="black",cex=1.2)
 legend("bottomleft","(b)",bty="n")
+rm(a, pch.in,in.dat)
+#Panel c
 a = plot.dat$diatom*plot.dat$chla
 pch.in = ifelse(plot.dat$diatom[plot.dat$regime !="HighPhaeo"] <=0.25,0.75,
                 ifelse(plot.dat$diatom[plot.dat$regime !="HighPhaeo"] > 0.25 & plot.dat$diatom[plot.dat$regime !="HighPhaeo"] <=0.5,1,
@@ -67,5 +70,6 @@ text(y=12,x = -0.012,expression("R"^2*" = 0.69"), col="black",cex=1.2)
 legend("bottomleft","(c)",bty="n")
 legend("bottomright", legend =c("0 - 25","25 - 50", "50 - 75","75 - 100"),pch=21, bty="n",
        pt.cex=c(0.75,1,1.25,1.5), title="Biomass (%)")
-##
+rm(a, pch.in,in.dat)
 dev.off()
+rm(plot.dat,in.col,in.col.lty,in.col.plot,sl)

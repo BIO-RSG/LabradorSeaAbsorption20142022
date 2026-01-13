@@ -1,9 +1,7 @@
+rm(list=ls())
 library(pals)
 library(scales)
-library(oceancolouR)
-library(Ternary)
 options(scipen=5)
-
 ##
 wavelength = "wv443nm"
 hplc = read.csv("./Data/PhytoplanktonGrouping.csv")

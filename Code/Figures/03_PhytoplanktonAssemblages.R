@@ -36,8 +36,8 @@ set.data = function(hplc, yr){
     plot.dat = t(as.matrix(plot.dat))*100
     return(plot.dat)
 }
-
-png("./Figures/02_PhytoContribution.png",width=6.5,
+rm(lon.dist,dst.km,i,lon,year,dst)
+png("./Figures/03_PhytoContribution.png",width=6.5,
     height=7.5, units = "in",res=300,pointsize = 10 )
 par(mar=c(2.5,3,1.5,0),xpd=NA,mgp=c(2,1,0),family="serif",oma=c(4.5,0,0.5,0.5),mfrow=c(4,2))
 plot.dat = set.data(hplc,2014)
@@ -103,3 +103,4 @@ plot(y = new.dat$diatom*100, x=new.dat$phaeo*100,bg=in.col.p,pch=21,cex=1.4,
 legend(x=-25,y=0,legend="(h)",bty="n",cex=1.7)
 legend(y=-28, x=35, legend=c("HPB","LCB","DDS","MPB"),fill=in.col,xpd=NA,ncol=2,bty="n",title="Regime")
 dev.off()
+rm(list=ls())

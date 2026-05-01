@@ -37,14 +37,14 @@ polygon(density(hplc$slope350400[hplc$regime=="Shelf"],na.rm=T),col=in.col[3],xp
 legend("topright","(b)",bty="n")
 ##
 dat = hplc$acdom/hplc$aphy
-boxplot(dat~hplc$regime,ylab= expression("a"['CDOM']* " (443) : a"['PHYTO']*" (443)"),
+boxplot(dat~hplc$regime,ylab= expression("a"['CDOM']* " (443) : a"['PHY']*" (443)"),
         xlab="",col=in.col[c(2,1,4,3)],xaxt="n")
 legend("topright","(c)",bty="n")
 axis(1, at=1:4, labels=c("LCB","HPB","MPB","DDS"))
 text(x=(1:4)-0.25,y=rep(5,4), labels = c("AB","B","A","A"))
 plot(NA,xaxs="i",yaxs="i",ylab="Density",
      ylim=c(0,2),main="",xlim=c(0,max(dat,na.rm=T)*1.1),
-     xlab=expression("a"['CDOM']* " (443) : a"['PHYTO']*" (443)"))
+     xlab=expression("a"['CDOM']* " (443) : a"['PHY']*" (443)"))
 polygon(density(dat[hplc$regime=="Basin"],na.rm=T),col=in.col[2],xpd=F)
 polygon(density(dat[hplc$regime=="HighPhaeo"],na.rm=T),col=in.col[1],xpd=F)
 polygon(density(dat[hplc$regime=="MixPhaeo"],na.rm=T),col=in.col[4],xpd=F)
@@ -52,14 +52,14 @@ polygon(density(dat[hplc$regime=="Shelf"],na.rm=T),col=in.col[3],xpd=F)
 legend("topright","(d)",bty="n") 
 #
 dat = hplc$aphy/hplc$chla
-boxplot(dat~hplc$regime,ylab= expression("a*"['PHY']* " (m" ^3*" / mg chl)"),
+boxplot(dat~hplc$regime,ylab= expression("a*"['PHY']* " (m" ^2*" (mg chl-a)" ^-1*")"),
         xlab="",col=in.col[c(2,1,4,3)],xaxt="n")
 legend("topright","(e)",bty="n")
 axis(1, at=1:4, labels=c("LCB","HPB","MPB","DDS"))
 text(x=(1:4)-0.25,y=rep(0.15,4), labels = c("D","B","C","A"))
 plot(NA,xaxs="i",yaxs="i",ylab="Density",
      ylim=c(0,60),main="",xlim=c(0,max(dat,na.rm=T)*1.1),
-     xlab=expression("a*"['PHY']* " (m" ^3*" / mg chl)") )
+     xlab=expression("a*"['PHY']* " (m" ^2*" (mg chl-a)" ^-1*")"))
 polygon(density(dat[hplc$regime=="Basin"],na.rm=T),col=in.col[2],xpd=F)
 polygon(density(dat[hplc$regime=="HighPhaeo"],na.rm=T),col=in.col[1],xpd=F)
 polygon(density(dat[hplc$regime=="MixPhaeo"],na.rm=T),col=in.col[4],xpd=F)

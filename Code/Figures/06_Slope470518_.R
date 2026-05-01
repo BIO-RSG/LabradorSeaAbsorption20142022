@@ -24,6 +24,7 @@ sl = (plot.dat.norm$wv518nm - plot.dat.norm$wv471nm)/(518-471)
 boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab="Regime",
         ylim=c(-0.0145,-0.007),
         xlab =expression("S"['PHY']* " (470-518) (nm"^-1*")"),horizontal=T,names=rev(c("DDS","MPB","HPB","LCB")))
+text(x =rep(-0.008,4), y = c(1.2,2.2,3.2,4.2), c("B","B","B","A"))
 legend("bottomleft","(a)",bty="n")
 rm(wavelength,plot.dat.norm)
 #Panel b

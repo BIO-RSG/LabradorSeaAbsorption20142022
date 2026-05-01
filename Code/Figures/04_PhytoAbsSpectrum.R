@@ -17,7 +17,7 @@ in.col.lty = ifelse(plot.dat$regime=="Basin" ,2,
 png("./Figures/04_PhytoAbsSpectrum.png",width=6.5,height=4, units = "in",res=300,pointsize = 10 )
 par(mar=c(1.5,3,1,1),mgp=c(2,1,0),family="sans",mfrow=c(2,2),oma=c(2,0.5,0,0),xpd=NA)
 ##Panel a
-plot(NA,ylim=c(0,0.12),xlim = c(400,700), ylab=expression("a "['PHY']* " (m"^-1*")"),xlab="",xaxs="i",yaxs="i")
+plot(NA,ylim=c(0,0.12),xlim = c(400,700), ylab=expression("a"['PHY']* " (m"^-1*")"),xlab="",xaxs="i",yaxs="i")
 for ( i in c("Basin","MixPhaeo","HighPhaeo","Shelf" )){
     cd = ifelse(i=="Basin" ,in.col[2],
                 ifelse(i=="Shelf" ,in.col[3],
@@ -42,7 +42,7 @@ a = apply(in.dat,2, mean)
 lines(y=a,x=400:700,col=in.col[3],lwd=2,lty=2)
 rm(a,tab,in.dat,i)
 ##Panel b
-plot(NA,ylim=c(0,1.05),xlim = c(400,700), ylab=expression("Normalized to 443 nm a"[' PHY']*"" ),xlab="",xaxs="i",yaxs="i")
+plot(NA,ylim=c(0,1.05),xlim = c(400,700), ylab=expression("a"[' PHY']*" Normalized to 443 nm" ),xlab="",xaxs="i",yaxs="i")
 polygon(y=c(0,0,1.05,1.05),x = c(460,470,470,460),col="cornsilk",border=NA,xpd=F)
 polygon(y=c(0,0,1.05,1.05),x = c(470,518,518,470),col="grey85",border=NA,xpd=F)
 polygon(y=c(0,0,1.05,1.05),x = c(580,600,600,580),col="cornsilk3",border=NA,xpd=F)
@@ -73,7 +73,7 @@ plot.dat.2 = test
 for (i in 1:length(a)){test[i,paste0("wv",400:700,"nm")] = test[i,paste0("wv",400:700,"nm")] / a[i]}
 plot.dat.2[,paste0("wv",400:700,"nm")] = test[,paste0("wv",400:700,"nm")]
 rm(a,i,test)
-plot(NA,ylim=c(0,3.5),xlim = c(400,700), ylab=expression("Normalized to 675 nm a "['PHY']*"" ),xlab="Wavelength (nm)",xaxs="i",yaxs="i")
+plot(NA,ylim=c(0,3.5),xlim = c(400,700), ylab=expression("a"['PHY']*" Normalized to 675 nm" ),xlab="Wavelength (nm)",xaxs="i",yaxs="i")
 polygon(y=c(0,0,3.55,3.55),x = c(460,470,470,460),col="cornsilk",border=NA,xpd=F)
 polygon(y=c(0,0,3.55,3.55),x = c(470,518,518,470),col="grey85",border=NA,xpd=F)
 polygon(y=c(0,0,3.55,3.55),x = c(580,600,600,580),col="cornsilk3",border=NA,xpd=F)
@@ -97,7 +97,7 @@ plot.dat.2 = test
 for (i in 1:length(a)){test[i,paste0("wv",400:700,"nm")] = test[i,paste0("wv",400:700,"nm")] / a[i]}
 plot.dat.2[,paste0("wv",400:700,"nm")] = test[,paste0("wv",400:700,"nm")]
 rm(a,i,test)
-plot(NA,ylim=c(0,0.065),xlim = c(400,700), ylab=expression("a*"['PHY']* " (m"^2*"/ mg chl)"),
+plot(NA,ylim=c(0,0.065),xlim = c(400,700), ylab=expression("a*"['PHY']* " (m"^2*" (mg chl-a)"^-1* ")"),
      xlab="Wavelength (nm)",xaxs="i",yaxs="i")
 polygon(y=c(0,0,1.05,1.05),x = c(460,470,470,460),col="cornsilk",border=NA,xpd=F)
 polygon(y=c(0,0,1.05,1.05),x = c(470,518,518,470),col="grey85",border=NA,xpd=F)

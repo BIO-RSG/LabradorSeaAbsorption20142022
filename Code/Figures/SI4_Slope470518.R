@@ -24,6 +24,7 @@ sl2=sl
 boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab=expression("a"['PHY']*"" ),
         ylim=c(-0.00258,-0.000043),
         xlab ="",horizontal=T,names=rev(c("DDS","MPB","HPB","LCB")))
+text(x =rep(-0.002,4), y = c(1.2,2.2,3.2,4.2), c("D","B","AC","A"))
 legend("bottomleft","(a)",bty="n")
 a = plot.dat$phaeo*plot.dat$chla
 pch.in = ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.25,0.75,
@@ -72,10 +73,12 @@ wavelength = "wv675nm"
 plot.dat.norm = plot.dat[,paste0("wv", 400:700,"nm")]/plot.dat[,wavelength]
 sl = (plot.dat.norm$wv518nm - plot.dat.norm$wv471nm)/(518-471)
 sl2=sl
-boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab=expression("Normalized to 675 nm a"['PHY']*"" ),
+boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],
+        ylab=expression("a"['PHY']*" Normalized to 675 nm" ),
         ylim=c(-0.056,-0.010),
         xlab ="",horizontal=T,names=rev(c("DDS","MPB","HPB","LCB")))
-        legend("bottomleft","(d)",bty="n")
+legend("bottomleft","(d)",bty="n")
+text(x =rep(-0.05,4), y = c(1.2,2.2,3.2,4.2), c("C","A","B","A"))        
 a = plot.dat$phaeo*plot.dat$chla
 pch.in = ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.25,0.75,
                 ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] > 0.25 & plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.5,1,
@@ -122,6 +125,7 @@ sl2=sl
 boxplot(sl ~ as.factor(plot.dat$regime),col=in.col[c(2,1,4,3)],ylab=expression("a*"['PHY']*"" ),
         ylim=c(-0.0029,-0.00005),
         xlab =expression("S"['PHY']* " (470-518) (nm"^-1*")"),horizontal=T,names=rev(c("DDS","MPB","HPB","LCB")))
+text(x =rep(-0.002,4), y = c(1.2,2.2,3.2,4.2), c("D","B","C","A"))
 legend("bottomleft","(g)",bty="n")
 a = plot.dat$phaeo*plot.dat$chla
 pch.in = ifelse(plot.dat$phaeo[plot.dat$regime !="Shelf"] <=0.25,0.75,
